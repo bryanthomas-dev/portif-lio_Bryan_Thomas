@@ -51,4 +51,16 @@ Graduando em Ciência da Computação pela UNICID, com foco estratégico em Enge
 | **SM8 - Composição Musical Assistida por Inteligência Artificial** | Criação de música utilizando a ferramenta Suno AI. | [Ver Projeto](./projeto-composicao-musical) |
 ---
 
-### 🏗️ Estrutura do Repositório Abaixo, a organização técnica deste repositório. **Clique no código do projeto para abrir a pasta correspondente:** * 📂 [**SM1 - A Corrida do Prompt**](./A%20Corrida%20do%20Prompt) * 📂 [**SM2 - Laboratório de Classificação Visual**](./Laboratório%20de%20Classificação%20Visual) * 📂 [**SM3 - Batalha de Modelos & Engenharia de Prompt**](./Batalha%20de%20Modelos%20%26%20Engenharia%20de%20Prompt) * 📂 [**SM4 - Engenharia Reversa**](./Engenharia%20Reversa) * 📂 [**SM5 - Do Clone ao Produto Mínimo Viável (MVP+)**](./Do%20Clone%20ao%20Produto%20Mínimo%20Viável%20(MVP+)) * 📂 [**SM6 - Engenharia de Software e IA com Bubble.io**](./Engenharia%20de%20Software%20e%20IA%20com%20Bubble.io) * 📂 [**SM7 - Desenvolvimento de App de Videoconferência com Manus AI e Jitsi**](./Desenvolvimento%20de%20App%20de%20Videoconferência%20com%20Manus%20AI%20e%20Jitsi) * 📂 [**SM8 - Composição Musical Assistida por Inteligência Artificial**](./Composição%20Musical%20Assistida%20por%20Inteligência%20Artificial) * 📄 **README.md** (Documentação Principal)
+## 🏗️ Estrutura do Repositório
+
+Abaixo, a organização deste repositório para facilitar a navegação:
+
+- `/projeto-a-corrida-prompt/`: Projeto de exploração e otimização de prompts para IA.
+- `/projeto-batalha-modelos/`: Comparação entre modelos de IA e engenharia de prompts.
+- `/projeto-clone-produto/`: Desenvolvimento de MVP a partir de um clone de produto.
+- `/projeto-composicao-musical/`: Projeto de composição musical assistida por IA.
+- `/projeto-desenvolvimento-de-app/`: Aplicativo de videoconferência com Manus AI e Jitsi.
+- `/projeto-engenharia-prompt/`: Projeto de engenharia de software e IA com Bubble.io.
+- `/projeto-engenharia-reversa/`: Projeto de análise e documentação reversa de sistemas.
+- `/projeto-laboratorio-classificacao/`: Projeto de classificação visual com Inteligência Artificial.
+- `README.md`: Arquivo de apresentação principal.
