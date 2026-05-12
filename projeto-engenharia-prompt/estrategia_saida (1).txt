@@ -1,0 +1,57 @@
+ESTRATÉGIA DE SAÍDA — ORCAFLOW (Bubble.io)
+Disciplina: Desenvolvimento Low-Code com Boas Práticas de Engenharia de Software
+Aluno: Bryan Thomas
+Data: 22/04/2026
+
+---
+
+RISCO IDENTIFICADO: VENDOR LOCK-IN
+
+O Bubble retém a posse do código-fonte gerado pela plataforma, o que caracteriza
+um risco de Vendor Lock-in. Caso a plataforma encerre suas operações, aumente
+abruptamente seus preços ou deixe de atender aos requisitos do sistema, o projeto
+ficaria sem acesso ao código subjacente, impossibilitando uma migração direta.
+
+---
+
+ESTRATÉGIA DE MITIGAÇÃO
+
+Para mitigar esse risco, a estratégia de saída consiste em habilitar a Data API
+do Bubble, acessando Settings › API › Enable Data API, e marcar as tabelas
+Cliente (Client), Orçamento (Quote) e Item (QuoteItem) para exposição via API.
+
+Com isso, seria possível extrair todos os registros em formato JSON realizando
+requisições GET autenticadas nos endpoints gerados pela plataforma, como por exemplo:
+
+  https://appname.bubbleapps.io/api/1.1/obj/client
+  https://appname.bubbleapps.io/api/1.1/obj/quote
+  https://appname.bubbleapps.io/api/1.1/obj/quoteitem
+
+A autenticação nas requisições seria feita via API Key gerada no painel do Bubble
+(Settings › API › Generate a new API token), garantindo que apenas sistemas
+autorizados consigam acessar os dados durante o processo de exportação.
+
+---
+
+PLANO DE MIGRAÇÃO
+
+Os dados exportados em JSON alimentariam um novo sistema reescrito em tecnologias
+tradicionais, seguindo a seguinte stack:
+
+  - Backend:   Node.js com framework Express
+  - Banco de dados: PostgreSQL (estrutura relacional equivalente ao modelo atual)
+  - Frontend:  React com autenticação via JWT
+  - ORM:       Prisma ou Sequelize para mapeamento das entidades
+
+As tabelas seriam recriadas com a mesma estrutura relacional planejada na fase de
+modelagem (Passo 2), preservando os relacionamentos entre Usuario, Cliente,
+Orcamento e Item, bem como os Option Sets de status convertidos em ENUMs no
+PostgreSQL.
+
+---
+
+CONCLUSÃO
+
+Esta estratégia garante que, mesmo em caso de necessidade de abandono do Bubble,
+nenhum dado cadastrado pelos usuários seria perdido, assegurando a continuidade
+do negócio e a portabilidade total das informações do sistema OrcaFlow.
