@@ -43,7 +43,9 @@ Sou altamente comprometido com a resolução de problemas complexos por meio de 
 ---
 ### 📂 Portfólio de Projetos
 
-#### 🤖 Inteligência Artificial & Engenharia de Prompt
+### 🤖 Inteligência Artificial & Engenharia de Prompt
+
+Abaixo estão listados os projetos práticos desenvolvidos, focando na aplicação de IA e automação de processos.
 
 | Projeto | Descrição | Link |
 | :--- | :--- | :---: |
