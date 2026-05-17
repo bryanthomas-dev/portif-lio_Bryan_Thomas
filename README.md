@@ -1,40 +1,46 @@
 # Bryan Thomas Montalvo
-> Estudante de Ciência da Computação | Desenvolvimento Web & Backend
+
+[![Estudante de Ciência da Computação](https://img.shields.io/badge/Status-Estudante%20de%20Ci%C3%AAncia%20da%20Computa%C3%A7%C3%A3o-blue?style=for-the-badge)](https://www.unicid.edu.br/)
+[![Desenvolvimento Web & Backend](https://img.shields.io/badge/Foco-Desenvolvimento%20Web%20%26%20Backend-orange?style=for-the-badge)]()
 
 ---
 
-### 📫 Contato & Redes Sociais
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/bryan-thomas-01aa18267)
-[![E-mail](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:bryanthomas.btm@gmail.com)
-[![Currículo](https://img.shields.io/badge/Currículo-000000?style=for-the-badge&logo=read-the-docs&logoColor=white)](https://docs.google.com/document/d/13J73lCtSikj2bgnlufcRcysCxiRMEgSeJwviirgq1tY/edit?tab=t.0)
+## 📬 Contato & Redes Sociais
+
+Aqui estão os meus canais de comunicação e redes profissionais. Sinta-se à vontade para se conectar!
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com)
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:seu-email@example.com)
+[![Currículo](https://img.shields.io/badge/Curr%C3%ADculo-000000?style=for-the-badge&logo=read-the-docs&logoColor=white)](https://exemplo.com/curriculo.pdf)
 
 ---
 
-### 👨‍💻 Sobre
+## 👨‍💻 Sobre
 
-Graduando em Ciência da Computação pela UNICID, com foco estratégico em Engenharia de Software e Desenvolvimento Backend. Atuo na intersecção entre a construção de sistemas escaláveis e a implementação de Inteligência Artificial para a otimização de produtos tecnológicos. Comprometido com a resolução de problemas complexos por meio de arquiteturas web eficientes e metodologias modernas de desenvolvimento, visando sempre a entrega de valor e a excelência técnica em soluções de software.
+Graduando em **Ciência da Computação** pela **UNICID**, com foco estratégico em Engenharia de Software e Desenvolvimento Backend. Atuo na intersecção entre a construção de sistemas escaláveis e a implementação de Inteligência Artificial para a otimização de produtos tecnológicos.
+
+Sou altamente comprometido com a resolução de problemas complexos por meio de arquiteturas web eficientes e metodologias modernas de desenvolvimento, visando sempre a entrega de valor e a excelência técnica em soluções de software.
 
 * **Habilidades Técnicas:** Python, HTML, CSS, JavaScript, Engenharia de Prompt, IA Generativa.
 * **Habilidades Socioemocionais:** Trabalho em equipe, comunicação assertiva, pensamento crítico e aprendizado contínuo.
 
 ---
 
-### 🛠 Minhas Ferramentas Favoritas
+## 🛠️ Minhas Ferramentas Favoritas
 
-#### 💻 Linguagens e Tecnologias
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+### 💻 Linguagens e Tecnologias
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://w3.org/html)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://w3.org/css)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://javascript.com)
 
-#### 🤖 Inteligência Artificial & Ferramentas
-![Claude](https://img.shields.io/badge/Claude-D97757?style=for-the-badge&logo=anthropic&logoColor=white)
-![Gemini](https://img.shields.io/badge/Gemini-8E75B2?style=for-the-badge&logo=googlegemini&logoColor=white)
-![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
-![Suno](https://img.shields.io/badge/Suno-000000?style=for-the-badge&logo=suno&logoColor=white)
+### 🤖 Inteligência Artificial & Ferramentas
+[![Claude](https://img.shields.io/badge/Claude-D97706?style=for-the-badge&logo=anthropic&logoColor=white)](https://anthropic.com)
+[![Gemini](https://img.shields.io/badge/Gemini-8E44AD?style=for-the-badge&logo=google-gemini&logoColor=white)](https://gemini.google.com)
+[![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)](https://figma.com)
+[![Suno](https://img.shields.io/badge/Suno-000000?style=for-the-badge&logo=suno&logoColor=white)](https://suno.com)
 
 ---
-
 ### 📂 Portfólio de Projetos
 
 #### 🤖 Inteligência Artificial & Engenharia de Prompt
