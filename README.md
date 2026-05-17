@@ -59,14 +59,14 @@ Sou altamente comprometido com a resolução de problemas complexos por meio de 
 
 ## 🏗️ Estrutura do Repositório
 
-Abaixo, a organização deste repositório para facilitar a navegação:
+Organização das pastas deste repositório para facilitar a navegação:
 
-- `/projeto-a-corrida-prompt/`: Projeto de exploração e otimização de prompts para IA.
-- `/projeto-batalha-modelos/`: Comparação entre modelos de IA e engenharia de prompts.
-- `/projeto-clone-produto/`: Desenvolvimento de MVP a partir de um clone de produto.
-- `/projeto-composicao-musical/`: Projeto de composição musical assistida por IA.
-- `/projeto-desenvolvimento-de-app/`: Aplicativo de videoconferência com Manus AI e Jitsi.
-- `/projeto-engenharia-prompt/`: Projeto de engenharia de software e IA com Bubble.io.
-- `/projeto-engenharia-reversa/`: Projeto de análise e documentação reversa de sistemas.
-- `/projeto-laboratorio-classificacao/`: Projeto de classificação visual com Inteligência Artificial.
-- `README.md`: Arquivo de apresentação principal.
+* `/projeto-a-corrida-prompt/` : Projeto de exploração e otimização de prompts para IA.
+* `/projeto-batalha-modelos/` : Comparação entre modelos de IA e engenharia de prompts.
+* `/projeto-clone-produto/` : Desenvolvimento de MVP a partir de um clone de produto.
+* `/projeto-composicao-musical/` : Projeto de composição musical assistida por IA.
+* `/projeto-desenvolvimento-dep-app/` : Aplicativo de videoconferência com Manus AI e Jitsi.
+* `/projeto-engenharia-prompt/` : Projeto de engenharia de software e IA com Bubble.io.
+* `/projeto-engenharia-reversa/` : Projeto de análise e documentação reversa de sistemas.
+* `/projeto-laboratorio-classificacao/` : Projeto de classificação visual com Inteligência Artificial.
+* `README.md` : Arquivo de apresentação principal.
