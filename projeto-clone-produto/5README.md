@@ -44,29 +44,27 @@ O resultado final foi uma aplicação funcional hospedada no **Google AI Studio 
 
 ### Tela Inicial
 
-```md
-📷 Inserir screenshot da Home do sistema aqui
-```
+<p align="center">
+  <img src="assets/image-menu.png" width="100%">
+</p>
 
 ### Editor de Componentes
 
-```md
-📷 Inserir screenshot da área de edição aqui
-```
+<p align="center">
+  <img src="assets/image-editor.png" width="100%">
+</p>
 
 ### Painel de Customização
 
-```md
-📷 Inserir screenshot do painel lateral aqui
-```
+<p align="center">
+  <img src="assets/image-tela-lateral.png" width="100%">
+</p>
 
 ### Responsividade Mobile
 
-```md
-📷 Inserir screenshot da versão mobile aqui
-```
-
----
+<p align="center">
+  <img src="assets/image-mobile-device.png" width="300">
+</p>
 
 # 🧠 Arquitetura do Projeto
 
