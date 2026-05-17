@@ -1,4 +1,4 @@
-# Bryan Thomas Montalvo
+# Bryan Thomas Montalvo Ferreira
 
 [![Estudante de Ciência da Computação](https://img.shields.io/badge/Status-Estudante%20de%20Ci%C3%AAncia%20da%20Computa%C3%A7%C3%A3o-blue?style=for-the-badge)](https://www.unicid.edu.br/)
 [![Desenvolvimento Web & Backend](https://img.shields.io/badge/Foco-Desenvolvimento%20Web%20%26%20Backend-orange?style=for-the-badge)]()
@@ -9,9 +9,9 @@
 
 Aqui estão os meus canais de comunicação e redes profissionais. Sinta-se à vontade para se conectar!
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com)
-[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:seu-email@example.com)
-[![Currículo](https://img.shields.io/badge/Curr%C3%ADculo-000000?style=for-the-badge&logo=read-the-docs&logoColor=white)](https://exemplo.com/curriculo.pdf)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/bryan-thomas-01aa18267)
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:bryanthomas.btm@gmail.com)
+[![Currículo](https://img.shields.io/badge/Curr%C3%ADculo-000000?style=for-the-badge&logo=read-the-docs&logoColor=white)](https://docs.google.com/document/d/1F8RymYySk8mIQs_xC7vPu3HQcJjRx2nEmnr2pPZXLwQ/edit?usp=sharing)
 
 ---
 
