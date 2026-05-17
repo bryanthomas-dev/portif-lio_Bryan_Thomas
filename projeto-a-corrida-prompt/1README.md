@@ -10,7 +10,7 @@
 Este projeto consiste na exploração e análise analítica sobre o impacto das técnicas de Engenharia de Prompt no comportamento, precisão e qualidade das respostas geradas por Grandes Modelos de Linguagem (LLMs). O objetivo principal foi mitigar alucinações e otimizar a assertividade dos modelos por meio de estruturas bem definidas.
 
 ### 📷 Fluxo de Execução e Interação
-![Fluxo de Interação com LLM](https://via.placeholder.com/800x400.png?text=Fluxo+de+Interacao+e+Engenharia+de+Prompt)
+![Fluxo de Interação com LLM](Captura%20de%20tela%202026-03-02%20222537.png)
 *Figura 1: Indexação do fluxo de engenharia de prompt aplicado nas interações com as IAs.*
 
 ---
