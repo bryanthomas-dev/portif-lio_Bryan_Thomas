@@ -10,10 +10,12 @@ Desenvolvido como parte da disciplina de **Engenharia de Prompt e Aplicações e
 
 O modelo foi capaz de classificar corretamente rostos com diferentes características capilares, atingindo **100% de confiança** na categoria correta durante os testes realizados.
 
-![Teste do modelo em tempo real](./demo_classificacao.png)
+<img src="1000080250.jpg" alt="Teste do modelo em tempo real" width="280"/>
+
 *Figura 1: Resultado do modelo classificando uma imagem com 100% de confiança na categoria "careca".*
 
-![Interface de treinamento](./treinamento_modelo.png)
+<img src="1000080272.png" alt="Interface de treinamento" width="500"/>
+
 *Figura 2: Interface do Teachable Machine com as duas classes treinadas e amostras de imagens.*
 
 ## 🚀 Tecnologias Utilizadas
