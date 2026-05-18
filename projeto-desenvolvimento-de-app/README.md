@@ -111,4 +111,5 @@ cd portfolio-bryan-thomas-montalvo-ferreira/projeto-composicao-musical
 
 # 5. Instalar o APK gerado diretamente no dispositivo ou emulador conectado
 ./gradlew installDebug
-
+```
+<p align="right"><a href="https://github.com/bryanthomas-dev/portfolio-bryan-thomas-montalvo-ferreira">⬅️ Voltar ao início</a></p>
