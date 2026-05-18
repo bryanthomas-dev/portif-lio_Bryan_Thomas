@@ -39,5 +39,7 @@ O modelo foi capaz de classificar corretamente rostos com diferentes caracterís
 5. Teste o modelo com novas imagens via câmera ou upload.
 
 ---
+## 🔙 Voltar ao início
 
-[⬅ Voltar ao portfólio](https://github.com/bryanthomas-dev/portif-lio_Bryan_Thomas)
+<p align="right"><a href="https://github.com/bryanthomas-dev/portfolio-bryan-thomas-montalvo-ferreira">⬅️ Voltar ao início</a></p>
+
