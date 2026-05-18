@@ -10,34 +10,9 @@
 
 ## 📝 Descrição do Projeto
 
-Este projeto consistiu no desenvolvimento do **OrcaFlow**, um sistema de gestão de orçamentos empresariais construído na plataforma no-code Bubble.io. O design do software utilizou Engenharia de Prompt Avançada para automatizar a lógica de dados e workflows.
+Este projeto consiste no desenvolvimento do **OrcaFlow**, um sistema de gestão de orçamentos empresariais construído na plataforma no-code Bubble.io. O design do ecossistema utilizou Engenharia de Prompt Avançada para automatizar a lógica de dados e os workflows operacionais.
 
 Desenvolvido para a disciplina de **Engenharia de Software e IA (2026.1)**, o sistema isola dados por usuário de forma segura. Ele permite cadastrar clientes, gerenciar múltiplos itens e controlar o ciclo de vida de propostas comerciais.
-
----
-
-## 🧠 Engenharia de Prompt e Mitigação de Alucinações
-
-Para estruturar o banco de dados, regras de privacidade e workflows no Bubble, utilizamos um modelo de contexto delimitado. O prompt enviado à LLM foi estruturado em tags XML para guiar o processo de inferência da IA.
-
-Essa técnica de otimização de contexto restringiu o espaço de busca do modelo, impedindo a geração de relacionamentos redundantes. A definição explícita do escopo mitigou alucinações e comportamentos inesperados nas regras lógicas.
-
-### Arquitetura de Delimitação de Contexto (Prompt XML)
-```xml
-<contexto_arquitetura>
-  <plataforma>Bubble.io No-Code</plataforma>
-  <restricao_relacionamento>FKs estritamente no lado N da relação. Proibido listas aninhadas.</restricao_relacionamento>
-  <seguranca>Privacy Rules baseadas no ID do Creator. Isolamento multi-tenant.</seguranca>
-</contexto_arquitetura>
-```
-## 📊 Análise Comparativa de Saídas da IA
-
-Abaixo está o quadro comparativo que justifica as decisões tomadas na modelagem do sistema após testes de refinamento de prompt:
-
-| Abordagem do Prompt | Comportamento da LLM (Saída) | Impacto na Engenharia de Software | Resultado |
-| :--- | :--- | :--- | :--- |
-| **Sem Delimitação** | Sugeriu listas de itens dentro da tabela pai (Orçamento). | Alucinação em escala: estouro do limite de peso de busca do Bubble. | **Rejeitado** |
-| **Com Tag XML (Projetada)** | Separou as entidades e forçou o relacionamento 1:N via ID. | Total conformidade com a 3ª Forma Normal (3FN). | **Adotado** |
 
 ---
 
@@ -65,11 +40,19 @@ Todas as tabelas possuem regras de privacidade configuradas para garantir o isol
 * **Orçamento:** `This Quote's Creator is Current User`
 * **Item:** `This QuoteItem's Quote's Creator is Current User`
 
+<p align="center">
+  <img src="data_privacy%20(1).jpeg" alt="Configuração de privacidade no Bubble" width="600"/>
+</p>
+
 ---
 
 ## ⚙️ Workflows do Sistema
 
 O sistema executa 11 workflows documentados na página de clientes, cobrindo operações críticas de CRUD. Cada ação possui tratamento de exceção para guiar a experiência do usuário.
+
+<p align="center">
+  <img src="Workflow%20(1).jpeg" alt="Workflows do sistema no Bubble" width="600"/>
+</p>
 
 ---
 
@@ -106,5 +89,6 @@ GET [https://appname.bubbleapps.io/api/1.1/obj/quoteitem](https://appname.bubble
 * Entendimento de que **Engenharia de Software** vai além do código — envolve arquitetura, segurança e planejamento de continuidade.
 
 ---
+## 🔙 Voltar ao início
 
-[⬅ Voltar ao portfólio](https://github.com/bryanthomas-dev/portif-lio_Bryan_Thomas)
+<p align="right"><a href="https://github.com/bryanthomas-dev/portfolio-bryan-thomas-montalvo-ferreira">⬅️ Voltar ao início</a></p>
