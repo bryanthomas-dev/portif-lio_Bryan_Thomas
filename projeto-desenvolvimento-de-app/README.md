@@ -17,9 +17,7 @@ O projeto mitiga a barreira da exclusão digital na terceira idade, readequando 
 Para garantir a total validação visual e demonstrar a topologia ergonômica planejada para o público idoso, os mockups abaixo representam as telas estruturais do sistema:
 
 <p align="center">
-  <img src="https://images.placeholders.dev/?width=300&height=550&text=Tela+Principal+-+Botao+Grande+Acessivel&theme=dark" alt="Mockup da Tela Principal do ConectaFácil" width="280"/>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://images.placeholders.dev/?width=300&height=550&text=Chamada+Ativa+-+Foco+Total+No+Video&theme=dark" alt="Mockup da Chamada Ativa" width="280"/>
+  <img src="assets/images/image-menu.png" alt="Mockup da Tela Principal do ConectaFácil" width="280"/>
 </p>
 
 ---
