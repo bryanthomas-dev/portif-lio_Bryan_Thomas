@@ -391,3 +391,7 @@ outputs/claude.html
 # 📄 Licença
 
 Projeto acadêmico desenvolvido exclusivamente para fins educacionais.
+
+## 🔙 Voltar ao início
+
+<p align="right"><a href="https://github.com/bryanthomas-dev/portfolio-bryan-thomas-montalvo-ferreira">⬅️ Voltar ao início</a></p>
