@@ -12,32 +12,30 @@
 
 ## 📝 Descrição do Projeto
 
-O **OrcaFlow** é um sistema de gestão de orçamentos empresariais construído na plataforma no-code **Bubble.io**, desenvolvido para a disciplina de **Engenharia de Software e IA (2026.1)**.
+O **OrcaFlow** é um sistema de gestão de orçamentos empresariais construído no Bubble.io para a disciplina de **Engenharia de Software e IA (2026.1)**.
 
 | Característica | Detalhe |
 |---|---|
 | Plataforma | Bubble.io (No-Code) |
 | LLM utilizada | Claude 3.5 Sonnet |
-| Técnica de IA | Engenharia de Prompt com XML Directives |
-| Isolamento de dados | Multi-Tenancy por usuário |
+| Técnica de IA | XML Directives |
+| Isolamento de dados | Multi-Tenancy por Creator |
 | Workflows documentados | 11 operações CRUD |
 
 ---
 
 ## 🗃️ Modelagem do Banco de Dados
 
-Banco de dados relacional estruturado em **4 entidades principais**:
-
 | Entidade | Responsabilidade |
 |---|---|
 | **Usuario (User)** | Perfis: Administrador, Vendedor ou Visualizador |
 | **Cliente (Client)** | Dados de contato e vinculação corporativa |
 | **Orçamento (Quote)** | Título, valor, validade e status da proposta |
-| **Item do Orçamento (QuoteItem)** | Descrição, quantidade e preço unitário |
+| **Item (QuoteItem)** | Descrição, quantidade e preço unitário |
 
-> 💡 **Boa prática aplicada:** Chaves estrangeiras (FKs) mapeadas no lado N da relação. Evita sobrecarga de carregamento quando tabelas ultrapassam 100 registros no Bubble.
+> 💡 FKs mapeadas no lado N da relação — evita sobrecarga de carregamento acima de 100 registros no Bubble.
 
-### Estados de Ciclo de Vida (Option Sets)
+### Estados de ciclo de vida
 
 `Pendente` | `Aprovado` | `Rejeitado` | `Em Revisão` | `Expirado`
 
@@ -45,9 +43,7 @@ Banco de dados relacional estruturado em **4 entidades principais**:
 
 ## 🔐 Regras de Privacidade (Multi-Tenancy)
 
-Todas as tabelas possuem regras de privacidade configuradas para isolamento lógico:
-
-| Tabela | Regra de Privacidade |
+| Tabela | Regra configurada |
 |---|---|
 | Cliente | `This Client's Creator is Current User` |
 | Orçamento | `This Quote's Creator is Current User` |
@@ -61,7 +57,7 @@ Todas as tabelas possuem regras de privacidade configuradas para isolamento lóg
 
 ## ⚙️ Workflows do Sistema
 
-O sistema executa **11 workflows** documentados na página de clientes, cobrindo operações críticas de CRUD. Cada ação possui tratamento de exceção para guiar a experiência do usuário.
+11 workflows documentados cobrindo operações CRUD completas. Cada ação possui tratamento de exceção explícito para guiar a experiência do usuário.
 
 <p align="center">
   <img src="Workflow%20(1).jpeg" alt="Workflows do sistema no Bubble" width="600"/>
@@ -71,54 +67,71 @@ O sistema executa **11 workflows** documentados na página de clientes, cobrindo
 
 ## 🧠 Engenharia de Prompt — Estratégia Anti-Alucinação
 
-A lógica do sistema foi gerada com Claude 3.5 Sonnet utilizando **XML Directives** como técnica central de estruturação contextual. As decisões de design de prompt seguiram princípios de engenharia de software:
+### Arquitetura de contexto aplicada
 
-### Estrutura das Diretrizes Contextuais
+A lógica do sistema foi gerada com **XML Directives** como técnica de delimitação contextual. Cada tag mapeia diretamente para um princípio de arquitetura de software:
+
+| Diretriz | Analogia arquitetural | Função anti-alucinação |
+|---|---|---|
+| `<context>` | Schema de dados | Define contrato entre sistema e modelo |
+| `<constraints>` | Regras de negócio | Restringe espaço de soluções válidas |
+| `<output_format>` | Contrato de interface | Garante saída consumível sem retrabalho |
+
+### Estrutura das diretrizes
 
 ```xml
 <context>
-  Plataforma: Bubble.io (No-Code). Sem acesso a código-fonte nativo.
+  Plataforma: Bubble.io. Sem acesso a código-fonte nativo.
   Entidades: Usuario, Cliente, Orçamento, QuoteItem.
-  Restrição: Toda FK deve estar no lado N da relação.
+  Restrição estrutural: FK sempre no lado N da relação.
 </context>
+```
 
+```xml
 <constraints>
   - Nunca sugerir código JavaScript/backend direto no Bubble
-  - Respeitar o modelo de privacidade multi-tenant por Creator
-  - Workflows devem incluir tratamento de erro explícito
+  - Respeitar modelo de privacidade multi-tenant por Creator
+  - Workflows devem incluir fallback de erro explícito
 </constraints>
+```
 
+```xml
 <output_format>
-  Retornar apenas passos clicáveis dentro do editor Bubble.
-  Sem ambiguidades: nomear campo, tipo e tabela em cada instrução.
+  Retornar apenas passos clicáveis no editor Bubble.
+  Nomear campo, tipo e tabela em cada instrução.
 </output_format>
 ```
 
-### Por que isso mitiga alucinações?
+### Otimização de tokens de contexto
 
-| Problema comum em LLMs | Mitigação aplicada |
-|---|---|
-| Sugerir recursos inexistentes na plataforma | `<constraints>` delimita o escopo ao Bubble.io |
-| Gerar FKs no lado errado da relação | Regra explícita no `<context>` |
-| Workflows sem tratamento de erro | `<output_format>` exige inclusão de fallback |
-| Misturar paradigmas no-code com código | Restrição explícita no `<constraints>` |
+Ao delimitar o escopo com XML, o modelo concentra peso de atenção nas soluções dentro do domínio Bubble.io. Tokens que seriam alocados para raciocínio sobre backend, SQL direto ou APIs externas são suprimidos pelas `<constraints>`, reduzindo alucinações sobre recursos inexistentes na plataforma.
 
-> 🎯 **Decisão de engenharia:** Ao delimitar o contexto com XML, o modelo opera dentro de um "espaço de solução restrito", reduzindo drasticamente respostas fora do domínio da plataforma.
+### Saídas comparativas — com vs. sem delimitação
+
+| Cenário | Sem delimitação | Com XML Directives |
+|---|---|---|
+| FK entre Quote e QuoteItem | Sugeriu campo no lado 1 (errado) | Corretamente no lado N |
+| Tratamento de erro no workflow | Omitido | Incluído com fallback explícito |
+| Instrução de privacidade | Genérica, sem campo Creator | Regra exata: `Creator is Current User` |
+| Tipo de saída | Pseudocódigo JavaScript | Passos clicáveis no editor Bubble |
+
+> 🎯 **Decisão de engenharia:** O modelo opera em espaço de solução restrito — análogo a um compilador com escopo de variáveis declarado. O que não está no contexto não pode ser inferido como válido.
 
 ---
 
 ## 🚨 Estratégia de Saída — Vendor Lock-in
 
-**Risco Identificado:** O Bubble retém o código-fonte gerado, criando dependência tecnológica severa (*Vendor Lock-in*).
+**Risco:** O Bubble retém o código-fonte, criando dependência tecnológica severa.
 
-**Mitigação Arquitetural:** Habilitação da **Data API do Bubble** para exportar registros em JSON:
+**Mitigação:** Data API habilitada para exportação em JSON.
 
-```plaintext
-GET [https://appname.bubbleapps.io/api/1.1/obj/client](https://appname.bubbleapps.io/api/1.1/obj/client)
-GET [https://appname.bubbleapps.io/api/1.1/obj/quote](https://appname.bubbleapps.io/api/1.1/obj/quote)
-GET [https://appname.bubbleapps.io/api/1.1/obj/quoteitem](https://appname.bubbleapps.io/api/1.1/obj/quoteitem)
 ```
-### Stack de Migração Planejada
+GET https://appname.bubbleapps.io/api/1.1/obj/client
+GET https://appname.bubbleapps.io/api/1.1/obj/quote
+GET https://appname.bubbleapps.io/api/1.1/obj/quoteitem
+```
+
+### Stack de migração planejada
 
 | Camada | Tecnologia |
 |---|---|
@@ -134,11 +147,11 @@ GET [https://appname.bubbleapps.io/api/1.1/obj/quoteitem](https://appname.bubble
 | Entrega | Resultado |
 |---|---|
 | CRUD completo | ✅ Clientes e Orçamentos funcionais |
-| Modelagem relacional | ✅ Boas práticas aplicadas em ambiente no-code |
-| Risco de Vendor Lock-in | ✅ Mitigado com estratégia de exportação via Data API |
-| Engenharia de Prompt | ✅ XML Directives reduziram retrabalho e alucinações |
+| Modelagem relacional | ✅ Boas práticas aplicadas em no-code |
+| Vendor Lock-in | ✅ Mitigado com exportação via Data API |
+| Engenharia de Prompt | ✅ XML Directives eliminaram retrabalho e alucinações |
 
-> 🔑 **Aprendizado central:** Engenharia de Software vai além do código — envolve arquitetura, segurança, planejamento de continuidade **e** a capacidade de estruturar contexto preciso para sistemas de IA colaborativos.
+> 🔑 Engenharia de Software vai além do código — envolve arquitetura, segurança, continuidade **e** estruturação precisa de contexto para sistemas de IA.
 
 ---
 
@@ -156,4 +169,4 @@ GET [https://appname.bubbleapps.io/api/1.1/obj/quoteitem](https://appname.bubble
 
 ## 🔙 Voltar ao início
 
-<p align="right"><a href="https://github.com/bryanthomas-dev/portfolio-bryan-thomas-montalvo-ferreira">⬅️ Voltar ao início</a></p>
+<p align="right"><a href="https://github.com/bryanthomas-dev/portfolio-bryan-thomas-montalvo-ferreira">⬅️ Voltar ao portfólio</a></p>
