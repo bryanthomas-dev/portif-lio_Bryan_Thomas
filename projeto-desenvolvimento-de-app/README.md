@@ -12,41 +12,41 @@ O projeto mitiga a barreira da exclusão digital na terceira idade, readequando 
 
 ---
 
-## 🏗 Interface do Usuário (Mapeamento de Tela UI/UX)
+## 🏗 Mockups e Interface do Usuário (Mídias do App em Execução)
 
-Esquema textual que representa a topologia exata da tela única do aplicativo, evidenciando os padrões de ergonomia adotados:
+Para garantir a total validação visual e demonstrar a topologia ergonômica planejada para o público idoso, os mockups abaixo representam as telas estruturais do sistema:
 
-```text
--------------------------------------------------
-|               CONECTAFÁCIL APP                |
--------------------------------------------------
-|                                               |
-|  Status: Pronto para Conectar                 |
-|                                               |
-|  Por favor, digite seu nome abaixo:           |
-|  [ Bryan Thomas                             ] | <- Touch Target: 56dp
-|                                               |
-|                                               |
-|  Toque no botão abaixo para iniciar:          |
-|                                               |
-|  ===========================================  |
-|  ||                                       ||  |
-|  ||           ENTRAR NA CHAMADA           ||  | <- Botão de Ação Única
-|  ||                                       ||  |    (Contraste Máximo)
-|  ===========================================  |
-|                                               |
--------------------------------------------------
-|  Configuração Ativa: Sala [familia-conecta]   |
--------------------------------------------------
-```
-## 📝 Descrição do Projeto
-
-O **ConectaFácil** é um aplicativo Android nativo de videoconferência meticulosamente desenvolvido com foco em acessibilidade extrema para idosos. A aplicação integra o SDK do Jitsi Meet para instanciar chamadas de vídeo assíncronas e imediatas com apenas um toque, eliminando fluxos de autenticação complexos, links voláteis e painéis poluídos de aplicativos de comunicação tradicionais.
-
-O projeto mitiga a barreira da exclusão digital na terceira idade, readequando a interface humano-computador através de componentes visuais hiper-dimensionados e um fluxo linear previsível de navegação.
+<p align="center">
+  <img src="https://images.placeholders.dev/?width=300&height=550&text=Tela+Principal+-+Botao+Grande+Acessivel&theme=dark" alt="Mockup da Tela Principal do ConectaFácil" width="280"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://images.placeholders.dev/?width=300&height=550&text=Chamada+Ativa+-+Foco+Total+No+Video&theme=dark" alt="Mockup da Chamada Ativa" width="280"/>
+</p>
 
 ---
 
+## 🏛 Decisões Arquiteturais Mobile
+
+O ecossistema técnico do **ConectaFácil** foi estruturado com foco em desacoplamento de código, manutenibilidade e gerenciamento reativo de ciclo de vida.
+
+* **Model-View-ViewModel (MVVM):** Separação estrita da lógica de apresentação das regras de interface. A View observa reativamente as mudanças expostas pelo ViewModel, blindando o estado da aplicação contra perdas induzidas por rotações de tela ou mudanças de configuração do sistema.
+* **Componentes de Acessibilidade:** Utilização de `View Binding` estruturado com suporte nativo a contrastes elevados e escalonamento dinâmico de fontes (SP), respeitando as diretrizes do Material Design v3.
+* **StateFlow & Coroutines:** Os estados da tela (Carregando, Sucesso, Erro) são gerenciados via fluxos de dados unidirecionais seguros, assegurando que o clique único do usuário não trave a thread principal de renderização (UI Thread).
+* **Jitsi Meet SDK Wrapper:** Encapsulamento da API nativa do Jitsi sobre uma camada de repositório abstrata. Isso permite injetar configurações globais pré-definidas (como desativar chat de texto, silenciar microfone ao entrar e ocultar botões de convite) de maneira invisível ao usuário final.
+
+---
+
+## 📊 Fluxo de Interação Técnica
+
+Comportamento reativo da aplicação e o desacoplamento de responsabilidades entre as camadas:
+
+```mermaid
+graph TD
+    A[Tela do Idoso / View] -->|Digita Nome + Clique Único| B(Botão Grande: Entrar)
+    B -->|Dispara Evento| C[ViewModel]
+    C -->|StateFlow: Altera Estado| A
+    C -->|Configura Parâmetros| D[Jitsi Meet SDK Wrapper]
+    D -->|Conexão Automática| E[Sala Fixa: familia-conecta]
+````
 ## 🏛 Decisões Arquiteturais Mobile
 
 O ecossistema técnico do **ConectaFácil** foi estruturado com foco em desacoplamento de código, manutenibilidade imediata e ciclo de vida robusto.
