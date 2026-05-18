@@ -1,48 +1,67 @@
 # 📱 ConectaFácil - Videochamada Simplificada para Idosos
 
+**Plataforma:** Android (API 24+) | **Linguagem:** Kotlin Nativo | **Arquitetura:** MVVM | **Engine:** Jitsi Meet SDK
+
+---
+
 ## 📝 Descrição do Projeto
 
-O **ConectaFácil** é um aplicativo Android de videoconferência desenvolvido com foco em acessibilidade para idosos. A aplicação utiliza o SDK do Jitsi Meet para permitir que o usuário entre em uma chamada de vídeo com apenas um toque, eliminando a complexidade presente em aplicativos tradicionais.
+O **ConectaFácil** é um aplicativo Android nativo de videoconferência desenvolvido com foco em acessibilidade extrema para idosos. A aplicação integra o SDK do Jitsi Meet para instanciar chamadas de vídeo imediatas com apenas um toque, eliminando fluxos de autenticação complexos, links voláteis e painéis poluídos de aplicativos tradicionais.
 
-O projeto busca resolver a dificuldade que muitos idosos enfrentam ao utilizar tecnologias modernas, oferecendo uma interface simples, intuitiva e funcional.
-
----
-
-## 💡 Proposta de Valor
-
-- Interface extremamente simples  
-- Botões grandes e acessíveis  
-- Entrada em chamada com apenas um clique  
-- Foco total em usabilidade para idosos  
+O projeto mitiga a barreira da exclusão digital na terceira idade, readequando a interface humano-computador através de componentes visuais hiper-dimensionados e um fluxo linear previsível de navegação.
 
 ---
 
-## 🛠 Tecnologias Utilizadas
+## 🏗 Interface do Usuário (Mapeamento de Tela UI/UX)
 
-- Android  
-- Jitsi Meet SDK  
-- Manus AI
+Esquema textual que representa a topologia exata da tela única do aplicativo, evidenciando os padrões de ergonomia adotados:
+
+```text
+-------------------------------------------------
+|               CONECTAFÁCIL APP                |
+-------------------------------------------------
+|                                               |
+|  Status: Pronto para Conectar                 |
+|                                               |
+|  Por favor, digite seu nome abaixo:           |
+|  [ Bryan Thomas                             ] | <- Touch Target: 56dp
+|                                               |
+|                                               |
+|  Toque no botão abaixo para iniciar:          |
+|                                               |
+|  ===========================================  |
+|  ||                                       ||  |
+|  ||           ENTRAR NA CHAMADA           ||  | <- Botão de Ação Única
+|  ||                                       ||  |    (Contraste Máximo)
+|  ===========================================  |
+|                                               |
+-------------------------------------------------
+|  Configuração Ativa: Sala [familia-conecta]   |
+-------------------------------------------------
+```
+## 📝 Descrição do Projeto
+
+O **ConectaFácil** é um aplicativo Android nativo de videoconferência meticulosamente desenvolvido com foco em acessibilidade extrema para idosos. A aplicação integra o SDK do Jitsi Meet para instanciar chamadas de vídeo assíncronas e imediatas com apenas um toque, eliminando fluxos de autenticação complexos, links voláteis e painéis poluídos de aplicativos de comunicação tradicionais.
+
+O projeto mitiga a barreira da exclusão digital na terceira idade, readequando a interface humano-computador através de componentes visuais hiper-dimensionados e um fluxo linear previsível de navegação.
 
 ---
 
-## 📱 Funcionalidades
+## 🏛 Decisões Arquiteturais Mobile
 
-- Entrada automática em sala de videoconferência  
-- Interface simplificada  
-- Nome personalizado do usuário  
-- Sala fixa: **familia-conecta**
+O ecossistema técnico do **ConectaFácil** foi estruturado com foco em desacoplamento de código, manutenibilidade imediata e ciclo de vida robusto.
 
----
+### Padrão de Arquitetura e UI
+* **Model-View-ViewModel (MVVM):** Garante a separação estrita da lógica de apresentação das regras de interface. A camada de View observa reativamente as mudanças expostas pelo ViewModel, blindando o estado da aplicação contra perdas induzidas por rotações de tela ou mudanças de configuração do Android.
+* **Componentes de Acessibilidade:** Utilização de `View Binding` estruturado com suporte nativo a contrastes elevados e escalonamento dinâmico de fontes (SP).
 
-## 📲 Como Usar
+### Gerenciamento de Estado e Reatividade
+* **StateFlow & Coroutines:** Os estados da tela (Carregando, Sucesso, Erro de Conexão, Sessão Ativa) são gerenciados via fluxos de dados unidirecionais seguros contra vazamento de memória. Isso assegura que o clique do idoso resulte em uma ação determinística sem travamento de UI Thread.
 
-1. Abra o aplicativo  
-2. Digite seu nome  
-3. Clique em **"Entrar na chamada"**  
-4. Você será conectado automaticamente  
+### Integração de APIs e Terceiros
+* **Jitsi Meet SDK Wrapper:** Encapsulamento da API nativa do Jitsi sobre uma camada de repositório abstrata. Isso permite injetar configurações globais pré-definidas de chamada (como desativar chat de texto opcional, silenciar microfone por padrão, ocultar botões redundantes de convite) de maneira invisível ao usuário final.
 
 ---
-
 ## 🔗 Preview do Aplicativo
 
 👉 https://manus.im/app-preview/3xTmBGWafsjHRpUjc5Ngvn?sessionId=LWAM8kRYRyoZfnbqaCvFOo  
@@ -55,19 +74,41 @@ O projeto busca resolver a dificuldade que muitos idosos enfrentam ao utilizar t
 
 ---
 
-## 🧠 Diferencial do Projeto
+## 🛠 Tecnologias Utilizadas
 
-Este projeto propõe uma solução real de inclusão digital, focada em usuários idosos, reduzindo ao máximo a complexidade de interação com tecnologia.
-
----
-
-## ⚠️ Observações
-
-- Necessário conexão com internet  
-- Utiliza sala fixa para simplificar o uso  
+- **Linguagem:** Kotlin (Nativo)
+- **Plataforma Alvo:** Android (SDK Mínima: API 24+ / Android 7.0)
+- **Engine de Vídeo:** Jitsi Meet Android SDK (v3.10.2+)
+- **Assincronismo:** Kotlin Coroutines
+- **Ferramental Adicional:** Manus AI (Orquestração de UI)
 
 ---
 
-## 🚀 Conclusão
+## 🚀 Guia de Execução & Reprodutibilidade
 
-O ConectaFácil demonstra como a tecnologia pode ser simplificada para atender públicos específicos, promovendo acessibilidade e inclusão digital.
+Siga rigorosamente os pré-requisitos e comandos sequenciais abaixo para clonar, compilar e rodar o projeto localmente.
+
+### Pré-requisitos de Ambiente
+1. **Java Development Kit:** JDK 17 configurado nas variáveis de ambiente.
+2. **Android Studio:** Versão Ladybug (2024.2.1) ou superior instalada.
+3. **Android SDK:** Instalar via SDK Manager o Android 14.0 (API 34).
+4. **Dispositivo Físico ou Emulador:** Dispositivo com câmera e microfone funcionais (API 24+).
+
+### Comandos de Terminal para Build
+
+```bash
+# 1. Clonar o repositório
+git clone [https://github.com/bryanthomas-dev/portfolio-bryan-thomas-montalvo-ferreira.git](https://github.com/bryanthomas-dev/portfolio-bryan-thomas-montalvo-ferreira.git)
+
+# 2. Navegar até o diretório correspondente ao projeto mobile
+cd portfolio-bryan-thomas-montalvo-ferreira/projeto-composicao-musical
+
+# 3. Limpar builds residuais e validar dependências do Gradle
+./gradlew clean
+
+# 4. Compilar o projeto em modo de depuração (Debug)
+./gradlew assembleDebug
+
+# 5. Instalar o APK gerado diretamente no dispositivo ou emulador conectado
+./gradlew installDebug
+
