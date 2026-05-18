@@ -60,4 +60,4 @@ Para reproduzir os experimentos realizados neste laboratório, siga o passo a pa
 
 ## 🔙 Voltar ao início
 
-[⬅ Voltar ao portfólio](https://github.com/bryanthomas-dev/portif-lio_Bryan_Thomas)
+<p align="right"><a href="https://github.com/bryanthomas-dev/portfolio-bryan-thomas-montalvo-ferreira">⬅️ Voltar ao início</a></p>
