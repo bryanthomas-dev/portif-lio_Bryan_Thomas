@@ -11,39 +11,39 @@
 
 ## 📝 Descrição do Projeto
 
-Exploração de **engenharia reversa aplicada a prompts e interfaces de IA**, analisando como o modelo **Qwen3.5-Plus** interpreta e reage a variações de instrução, persona e contexto.
+Exploração de **engenharia reversa aplicada a prompts de IA**, desconstruindo como o modelo **Qwen3.5-Plus** processa variações de instrução, persona e contexto para produzir outputs distintos.
 
-| Variável desconstruída | Efeito observado |
+| Variável desconstruída | Papel no sistema |
 |---|---|
-| Instrução (task) | Define o verbo da geração — escrever, gerar, transformar |
-| Persona (role) | Modula tom, vocabulário e acoplamento semântico |
-| Contexto (state) | Expande ou restringe o espaço de inferência |
-| Restrição (constraint) | Força outputs híbridos — resultado de sobreposição de módulos |
+| Instrução (task) | Define a modalidade de saída — verbo da geração |
+| Persona (role) | Modula tom e acoplamento semântico |
+| Contexto (state) | Expande ou colapsa o espaço de inferência |
+| Restrição (constraint) | Força sobreposição de módulos — output híbrido |
 
 ---
 
-## 🗺️ Mapa de Dependências — Estrutura do Prompt
+## 🗺️ Diagrama Estrutural — Fluxo de Herança do Prompt
 
-```
-┌─────────────────────────────────────────────────┐
-│  PROMPT                                         │
-│  ┌───────────────────────────────────────────┐  │
-│  │  [INSTRUÇÃO]  escrever e-mail de desculpa │  │
-│  └───────────────────────────────────────────┘  │
-│             │ herança                           │
-│  ┌───────────────────────────────────────────┐  │
-│  │  [PERSONA]    pirata extremamente arrogante│  │
-│  └───────────────────────────────────────────┘  │
-│             │ herança                           │
-│  ┌───────────────────────────────────────────┐  │
-│  │  [CONTEXTO]   roubou as 7 esferas do dragão│  │
-│  └───────────────────────────────────────────┘  │
-└──────────────────────┬──────────────────────────┘
-                       ▼
-              [ Qwen3.5-Plus: inferência ]
+```mermaid
+flowchart TD
+    A[Instrução - task] --> D{Qwen3.5-Plus}
+    B[Persona - role] --> D
+    C[Contexto - state] --> D
+    A -->|herança| B
+    B -->|herança| C
+    D --> E[Output gerado]
+    E -->|análise estática| F[Engenharia Reversa]
+    F -->|refatoração| A
+
+    style A fill:#5DCAA5,stroke:#0F6E56,color:#085041
+    style B fill:#F0997B,stroke:#993C1D,color:#712B13
+    style C fill:#EF9F27,stroke:#854F0B,color:#633806
+    style D fill:#AFA9EC,stroke:#534AB7,color:#3C3489
+    style E fill:#D3D1C7,stroke:#5F5E5A,color:#2C2C2A
+    style F fill:#D3D1C7,stroke:#5F5E5A,color:#2C2C2A
 ```
 
-> Cada camada herda e restringe o espaço semântico da camada anterior. A análise estática do output revelou acoplamento forte entre persona e tom lexical — modificar o role sem isolar a instrução propaga efeito cascata no resultado.
+> O fluxo de herança revela que modificar `Persona` sem isolar `Instrução` propaga efeito cascata no output — acoplamento forte entre os módulos de role e task.
 
 ---
 
@@ -51,66 +51,70 @@ Exploração de **engenharia reversa aplicada a prompts e interfaces de IA**, an
 
 ### Experimento 1 — Geração iterativa de imagens
 
-Prompt base: *"astronauta em Marte tocando violoncelo no estilo barroco"*. Refinamentos sucessivos aplicados como patches de contexto:
+Prompt base: *"astronauta em Marte tocando violoncelo no estilo barroco"*
 
-| Iteração | Modificação aplicada | Descoberta técnica |
-|---|---|---|
-| 1 | Prompt base | Estado inicial do espaço de inferência |
-| 2 | + ETs na plateia | Expansão de contexto sem refatoração da instrução |
-| 3 | Reposição dos ETs | Modificação posicional isolada — baixo acoplamento |
-| 4 | Astronauta em palco | Reestruturação da instrução — alto impacto no layout |
-| 5 | Remoção da cortina | Desconstrução parcial — restauração de estado anterior |
+| Iteração | Patch aplicado | Módulo afetado | Comportamento observado |
+|---|---|---|---|
+| 1 | Prompt base | task | Estado inicial do espaço de inferência |
+| 2 | + ETs na plateia | state | Expansão de contexto sem alterar instrução |
+| 3 | Reposição dos ETs | state | Modificação posicional isolada — baixo acoplamento |
+| 4 | Astronauta em palco | task + state | Refatoração de instrução — alto impacto no layout visual |
+| 5 | Remoção da cortina | state | Desconstrução parcial — restauração de estado anterior |
 
-**Descoberta:** O modelo mantém estado entre iterações somente quando o contexto é explicitamente preservado. Omitir elementos do prompt anterior equivale a um `reset` parcial do módulo de composição visual — comportamento análogo a **desacoplamento de estado** em sistemas stateless.
+**Descoberta técnica:** omitir elementos do prompt anterior equivale a um reset parcial do módulo de composição visual. O modelo é stateless entre iterações — sem memória implícita. Manter contexto coeso exige repassar explicitamente o estado anterior a cada chamada, comportamento análogo a **rehydration de estado** em sistemas sem persistência.
 
 ---
 
 ### Experimento 2 — Decomposição de persona e tom
 
-E-mails fictícios pirata → rei com variações progressivas de role:
+```mermaid
+flowchart LR
+    P1[E-mail formal] -->|+contexto narrativo| P2[Especificidade aumentada]
+    P2 -->|+persona arrogante| P3[Refatoração de tom]
+    P3 -->|+constraint override| P4[Output híbrido]
+    P4 -->|análise estática| R[Resolução por dominância]
 
-| Variação | Módulo modificado | Comportamento emergente |
-|---|---|---|
-| E-mail formal de desculpas | Instrução pura | Output padrão — sem modulação |
-| + contexto narrativo | Expansão de state | Especificidade semântica aumentada |
-| Persona: arrogante | Role injection | Refatoração completa do tom lexical |
-| + "considera o rei amador" | Constraint override | Herança conflitante — modelo resolve por dominância |
-| Manter formato + arrogância | Instrução vs. persona | Output híbrido — modularização parcial observada |
+    style P1 fill:#9FE1CB,stroke:#0F6E56,color:#085041
+    style P2 fill:#9FE1CB,stroke:#0F6E56,color:#085041
+    style P3 fill:#F5C4B3,stroke:#993C1D,color:#712B13
+    style P4 fill:#FAC775,stroke:#854F0B,color:#633806
+    style R fill:#AFA9EC,stroke:#534AB7,color:#3C3489
+```
 
-**Descoberta:** A IA executa resolução de conflito entre módulos de instrução e persona por **dominância contextual** — o módulo com maior peso semântico no prompt suprime parcialmente o outro. Comportamento análogo a **herança com override** em orientação a objetos.
-
----
-
-## 🔬 Análise Técnica — Desconstrução do Comportamento do Modelo
-
-### Análise estática do prompt
-
-A engenharia reversa revelou que o prompt funciona como um **grafo de dependências** com três nós principais:
-
-- `TASK` → define o tipo de saída (modalidade)
-- `ROLE` → modula o espaço lexical (tom, registro)
-- `STATE` → expande ou colapsa o espaço de inferência (especificidade)
-
-Modificar `ROLE` sem isolar `TASK` gera **acoplamento indesejado**: o modelo propaga o novo registro ao verbo da instrução, alterando não só o tom, mas a estrutura do output.
-
-### Modularização observada
-
-Ao injetar constraints conflitantes (*"mantenha o formato de desculpas + seja arrogante"*), o modelo não falha — ele produz um **output híbrido** por sobreposição de módulos. Isso evidencia que internamente o modelo trata instrução e persona como módulos semi-independentes com acoplamento fraco, resolvendo conflitos por dominância ponderada, não por exceção.
-
-### Implicação para refinamento de prompts
-
-Prompts tratados como **módulos desacoplados** (instrução / persona / contexto / restrição) permitem refatoração cirúrgica sem regressão nos demais eixos — princípio análogo à **modularização por responsabilidade única** em engenharia de software.
+**Descoberta técnica:** ao injetar constraints conflitantes (*"mantenha desculpas + seja arrogante"*), o modelo não lança exceção — produz output híbrido por **resolução de conflito entre módulos via dominância ponderada**, análogo a herança múltipla com override em orientação a objetos. O módulo com maior peso semântico no prompt suprime parcialmente o outro.
 
 ---
 
-## 📊 Resultados e Aprendizados
+## 🔬 Análise Técnica — Desconstrução do Sistema
 
-| Descoberta | Jargão técnico equivalente |
+### Justificativa da abordagem de desconstrução
+
+A técnica de **variação controlada por módulo** foi escolhida porque permite isolar o efeito de cada variável sem alterar as demais — princípio equivalente ao teste unitário em engenharia de software. Modificar apenas `role` mantendo `task` e `state` fixos revela com precisão o grau de **acoplamento** entre persona e output, sem contaminação de outras variáveis.
+
+### Análise estática dos outputs
+
+| Descoberta | Jargão arquitetural |
 |---|---|
 | Persona sobrescreve tom sem alterar estrutura | Override de módulo com herança parcial |
-| Contexto expande espaço de inferência | Injeção de dependência em runtime |
+| Contexto expande espaço de inferência sem refatorar instrução | Injeção de dependência em runtime |
 | Conflito instrução vs. persona → output híbrido | Resolução por dominância — sem hard exception |
-| Omitir elementos = reset parcial de estado | Stateless context — sem memória implícita |
+| Omitir elementos = reset parcial de estado | Stateless context — ausência de memória implícita |
+| Prompts tratados como módulos desacoplados | Modularização por responsabilidade única |
+
+### Justificativa do modelo de desacoplamento
+
+Tratar cada camada do prompt (task / role / state / constraint) como **módulo com interface bem definida** permite refatoração cirúrgica sem regressão nos demais eixos. A instrução define a interface pública; persona e contexto são injeções que especializam o comportamento sem alterar o contrato de saída — desde que o acoplamento entre módulos seja fraco. Quando o acoplamento é forte (role injeta semântica que conflita com task), o sistema não falha: resolve por dominância, priorizando o módulo com maior densidade semântica no prompt.
+
+---
+
+## 📊 Resultados
+
+| Métrica | Resultado |
+|---|---|
+| Experimentos realizados | 2 (imagem + texto) |
+| Iterações documentadas | 10 (5 por experimento) |
+| Módulos desconstruídos | task, role, state, constraint |
+| Padrão identificado | Resolução por dominância semântica |
 
 ---
 
@@ -119,9 +123,9 @@ Prompts tratados como **módulos desacoplados** (instrução / persona / context
 | Ferramenta | Uso |
 |---|---|
 | Qwen3.5-Plus | Modelo de linguagem para os experimentos |
-| chat.qwen.ai | Plataforma de interface com o modelo |
+| chat.qwen.ai | Plataforma de interface |
 | Prompt Decomposition | Técnica de desconstrução por camadas |
-| Behavioral Testing | Método de análise por variação controlada |
+| Behavioral Testing | Análise por variação controlada de módulos |
 
 ---
 
