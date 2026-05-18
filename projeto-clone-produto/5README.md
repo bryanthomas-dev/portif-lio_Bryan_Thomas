@@ -290,15 +290,12 @@ ou utilize uma extensão como:
 ```txt
 Live Server (VSCode)
 ```
-
----
-
-# 🔙 Navegação
-
-[⬅ Voltar ao Portfólio](https://github.com/bryanthomas-dev/portif-lio_Bryan_Thomas)
-
 ---
 
 # 📄 Licença
 
 Projeto acadêmico desenvolvido para fins educacionais e experimentais em Engenharia de Prompt e Aplicações em IA.
+
+## 🔙 Voltar ao início
+
+<p align="right"><a href="https://github.com/bryanthomas-dev/portfolio-bryan-thomas-montalvo-ferreira">⬅️ Voltar ao início</a></p>
