@@ -3,42 +3,55 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Plataforma-Bubble.io-00EEFF?style=for-the-badge&logo=bubble&logoColor=black" alt="Bubble.io">
   <img src="https://img.shields.io/badge/Engenharia_de_Prompt-XML_Directives-FF9900?style=for-the-badge" alt="Prompt Engineering">
-  <img src="https://img.shields.io/badge/LLM_Aplicada-Claude_3.5_Sonnet-D97706?style=for-the-badge" alt="Claude 3.5">
+  <img src="https://img.shields.io/badge/LLM_Aplicada-Claude_3.5_Sonnet-D97706?style=for-the-badge" alt="Claude 3.5 Sonnet">
+  <img src="https://img.shields.io/badge/Técnica-Context_Delimitation-6366F1?style=for-the-badge" alt="Context Delimitation">
+  <img src="https://img.shields.io/badge/Paradigma-No--Code_First-10B981?style=for-the-badge" alt="No-Code First">
 </p>
 
 ---
 
 ## 📝 Descrição do Projeto
 
-Este projeto consiste no desenvolvimento do **OrcaFlow**, um sistema de gestão de orçamentos empresariais construído na plataforma no-code Bubble.io. O design do ecossistema utilizou Engenharia de Prompt Avançada para automatizar a lógica de dados e os workflows operacionais.
+O **OrcaFlow** é um sistema de gestão de orçamentos empresariais construído na plataforma no-code **Bubble.io**, desenvolvido para a disciplina de **Engenharia de Software e IA (2026.1)**.
 
-Desenvolvido para a disciplina de **Engenharia de Software e IA (2026.1)**, o sistema isola dados por usuário de forma segura. Ele permite cadastrar clientes, gerenciar múltiplos itens e controlar o ciclo de vida de propostas comerciais.
+| Característica | Detalhe |
+|---|---|
+| Plataforma | Bubble.io (No-Code) |
+| LLM utilizada | Claude 3.5 Sonnet |
+| Técnica de IA | Engenharia de Prompt com XML Directives |
+| Isolamento de dados | Multi-Tenancy por usuário |
+| Workflows documentados | 11 operações CRUD |
 
 ---
 
 ## 🗃️ Modelagem do Banco de Dados
 
-O banco de dados relacional foi estruturado em 4 entidades principais geradas a partir do mapeamento contextual:
+Banco de dados relacional estruturado em **4 entidades principais**:
 
-* **Usuario (User):** Perfis estruturados como Administrador, Vendedor ou Visualizador.
-* **Cliente (Client):** Armazena dados de contato e vinculação corporativa do cliente final.
-* **Orçamento (Quote):** Controla o título, valor financeiro consolidado, validade e o status da proposta.
-* **Item do Orçamento (QuoteItem):** Detalha a descrição, quantidade volumétrica e preço unitário dos serviços.
+| Entidade | Responsabilidade |
+|---|---|
+| **Usuario (User)** | Perfis: Administrador, Vendedor ou Visualizador |
+| **Cliente (Client)** | Dados de contato e vinculação corporativa |
+| **Orçamento (Quote)** | Título, valor, validade e status da proposta |
+| **Item do Orçamento (QuoteItem)** | Descrição, quantidade e preço unitário |
 
-> 💡 **Boa prática aplicada:** Chaves estrangeiras (FKs) mapeadas estritamente no lado N da relação. Isso evita sobrecarga de carregamento no ecossistema Bubble quando tabelas ultrapassam 100 registros.
+> 💡 **Boa prática aplicada:** Chaves estrangeiras (FKs) mapeadas no lado N da relação. Evita sobrecarga de carregamento quando tabelas ultrapassam 100 registros no Bubble.
 
 ### Estados de Ciclo de Vida (Option Sets)
+
 `Pendente` | `Aprovado` | `Rejeitado` | `Em Revisão` | `Expirado`
 
 ---
 
 ## 🔐 Regras de Privacidade (Multi-Tenancy)
 
-Todas as tabelas possuem regras de privacidade configuradas para garantir o isolamento lógico dos dados:
+Todas as tabelas possuem regras de privacidade configuradas para isolamento lógico:
 
-* **Cliente:** `This Client's Creator is Current User`
-* **Orçamento:** `This Quote's Creator is Current User`
-* **Item:** `This QuoteItem's Quote's Creator is Current User`
+| Tabela | Regra de Privacidade |
+|---|---|
+| Cliente | `This Client's Creator is Current User` |
+| Orçamento | `This Quote's Creator is Current User` |
+| Item | `This QuoteItem's Quote's Creator is Current User` |
 
 <p align="center">
   <img src="data_privacy%20(1).jpeg" alt="Configuração de privacidade no Bubble" width="600"/>
@@ -48,7 +61,7 @@ Todas as tabelas possuem regras de privacidade configuradas para garantir o isol
 
 ## ⚙️ Workflows do Sistema
 
-O sistema executa 11 workflows documentados na página de clientes, cobrindo operações críticas de CRUD. Cada ação possui tratamento de exceção para guiar a experiência do usuário.
+O sistema executa **11 workflows** documentados na página de clientes, cobrindo operações críticas de CRUD. Cada ação possui tratamento de exceção para guiar a experiência do usuário.
 
 <p align="center">
   <img src="Workflow%20(1).jpeg" alt="Workflows do sistema no Bubble" width="600"/>
@@ -56,39 +69,91 @@ O sistema executa 11 workflows documentados na página de clientes, cobrindo ope
 
 ---
 
+## 🧠 Engenharia de Prompt — Estratégia Anti-Alucinação
+
+A lógica do sistema foi gerada com Claude 3.5 Sonnet utilizando **XML Directives** como técnica central de estruturação contextual. As decisões de design de prompt seguiram princípios de engenharia de software:
+
+### Estrutura das Diretrizes Contextuais
+
+```xml
+<context>
+  Plataforma: Bubble.io (No-Code). Sem acesso a código-fonte nativo.
+  Entidades: Usuario, Cliente, Orçamento, QuoteItem.
+  Restrição: Toda FK deve estar no lado N da relação.
+</context>
+
+<constraints>
+  - Nunca sugerir código JavaScript/backend direto no Bubble
+  - Respeitar o modelo de privacidade multi-tenant por Creator
+  - Workflows devem incluir tratamento de erro explícito
+</constraints>
+
+<output_format>
+  Retornar apenas passos clicáveis dentro do editor Bubble.
+  Sem ambiguidades: nomear campo, tipo e tabela em cada instrução.
+</output_format>
+```
+
+### Por que isso mitiga alucinações?
+
+| Problema comum em LLMs | Mitigação aplicada |
+|---|---|
+| Sugerir recursos inexistentes na plataforma | `<constraints>` delimita o escopo ao Bubble.io |
+| Gerar FKs no lado errado da relação | Regra explícita no `<context>` |
+| Workflows sem tratamento de erro | `<output_format>` exige inclusão de fallback |
+| Misturar paradigmas no-code com código | Restrição explícita no `<constraints>` |
+
+> 🎯 **Decisão de engenharia:** Ao delimitar o contexto com XML, o modelo opera dentro de um "espaço de solução restrito", reduzindo drasticamente respostas fora do domínio da plataforma.
+
+---
+
 ## 🚨 Estratégia de Saída — Vendor Lock-in
 
-**Risco Identificado:** O Bubble retém o código-fonte gerado, criando dependência tecnológica severa da plataforma (*Vendor Lock-in*).
+**Risco Identificado:** O Bubble retém o código-fonte gerado, criando dependência tecnológica severa (*Vendor Lock-in*).
 
-**Mitigação Arquitetural:** Habilitação da **Data API do Bubble** para expor os endpoints e exportar registros em formato JSON de forma limpa:
+**Mitigação Arquitetural:** Habilitação da **Data API do Bubble** para exportar registros em JSON:
 
 ```plaintext
 GET [https://appname.bubbleapps.io/api/1.1/obj/client](https://appname.bubbleapps.io/api/1.1/obj/client)
 GET [https://appname.bubbleapps.io/api/1.1/obj/quote](https://appname.bubbleapps.io/api/1.1/obj/quote)
 GET [https://appname.bubbleapps.io/api/1.1/obj/quoteitem](https://appname.bubbleapps.io/api/1.1/obj/quoteitem)
 ```
+### Stack de Migração Planejada
 
-**Stack de migração planejada:**
-- Backend: Node.js + Express
-- Banco de Dados: PostgreSQL
-- Frontend: React com autenticação JWT
-- ORM: Prisma ou Sequelize
+| Camada | Tecnologia |
+|---|---|
+| Backend | Node.js + Express |
+| Banco de Dados | PostgreSQL |
+| Frontend | React + JWT |
+| ORM | Prisma ou Sequelize |
 
-## 🚀 Tecnologias Utilizadas
-
-* **Plataforma:** Bubble.io (No-Code)
-* **Banco de Dados:** Bubble Database (estrutura relacional)
-* **Autenticação:** Sistema nativo do Bubble
-* **Documentação:** Rascunho de BD em PDF + Estratégia de saída em TXT
+---
 
 ## 📊 Resultados e Aprendizados
 
-* Entrega de um sistema funcional com CRUD completo para clientes e orçamentos.
-* Aplicação prática de **boas práticas de modelagem relacional** em ambiente no-code.
-* Compreensão do risco de **Vendor Lock-in** e como mitigá-lo com estratégias de exportação de dados.
-* Entendimento de que **Engenharia de Software** vai além do código — envolve arquitetura, segurança e planejamento de continuidade.
+| Entrega | Resultado |
+|---|---|
+| CRUD completo | ✅ Clientes e Orçamentos funcionais |
+| Modelagem relacional | ✅ Boas práticas aplicadas em ambiente no-code |
+| Risco de Vendor Lock-in | ✅ Mitigado com estratégia de exportação via Data API |
+| Engenharia de Prompt | ✅ XML Directives reduziram retrabalho e alucinações |
+
+> 🔑 **Aprendizado central:** Engenharia de Software vai além do código — envolve arquitetura, segurança, planejamento de continuidade **e** a capacidade de estruturar contexto preciso para sistemas de IA colaborativos.
 
 ---
+
+## 🚀 Tecnologias Utilizadas
+
+| Ferramenta | Uso |
+|---|---|
+| Bubble.io | Plataforma No-Code principal |
+| Claude 3.5 Sonnet | LLM para geração de lógica e workflows |
+| XML Directives | Técnica de Engenharia de Prompt |
+| Bubble Database | Estrutura relacional nativa |
+| Data API (Bubble) | Exportação e estratégia anti-lock-in |
+
+---
+
 ## 🔙 Voltar ao início
 
 <p align="right"><a href="https://github.com/bryanthomas-dev/portfolio-bryan-thomas-montalvo-ferreira">⬅️ Voltar ao início</a></p>
